@@ -29,6 +29,7 @@ class OWScatterPlotMatrix(OWWidget):
         # Right now, target the main layout for the scatter plot matrix.
         # This should change as the layout evolves.
         self.scatterPlotTargetLayout = self.mainArea.layout()
+        
 
         # We can force a redraw, but we should wait until there's data?
         #self.redrawLayout()
@@ -54,17 +55,17 @@ class OWScatterPlotMatrix(OWWidget):
         scatterPlotMatrix = QWidget()
         scatterPlotMatrixLayout = QGridLayout()
         
-        # Step through the first six attributes and create
+        # Step through the first few attributes and create
         # a scatter plot for them. The dataset we're using has
         # 80 attributes or so - which is way to much to plot in
         # a scatter plot matrix. We need to fix this at some point.
-        for row,rowTitle in enumerate(self.keys[0:6]):
+        for row,rowTitle in enumerate(self.keys[0:3]):
             for col,colTitle in enumerate(self.keys[0:row]):
                 
                 # Create the scatter plot graph object.
                 scatterPlot = OWScatterPlotGraph(None)
                 scatterPlot.setData(self.dataset)
-                scatterPlot.updateData(rowTitle,colTitle,"")
+                scatterPlot.updateData(colTitle,rowTitle,"")
                 
                 # Attach the scatter plot graph to our collection
                 # and add it to the layout.
